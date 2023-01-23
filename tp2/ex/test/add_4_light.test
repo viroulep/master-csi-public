@@ -1,0 +1,12 @@
+// RUN: %clang -O2 %S/add_4.c -o %t.ref
+// RUN: %clang -O2 -S -emit-llvm %S/add_4.c -o %t.ll
+// RUN: %opt -load %lib_oc -load-pass-plugin=%lib_oc -passes=opaque-constants -opaque-constants-algo=1 -S %t.ll -o %t.obf.ll
+// RUN: %clang %t.obf.ll -lm -o %t 
+// RUN: %filecheck %S/add_4.c < %t.obf.ll
+// RUN: %t.ref > %t.ref.out
+// RUN: %t > %t.out
+// RUN: diff %t.out %t.ref.out
+//
+// two compilation yield the exact same code !
+// RUN: %opt -load %lib_oc -load-pass-plugin=%lib_oc -passes=opaque-constants -opaque-constants-algo=1 -S %t.ll -o %t.obf2.ll
+// RUN: diff %t.obf.ll %t.obf2.ll
