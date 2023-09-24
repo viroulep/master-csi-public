@@ -5,9 +5,9 @@
 //
 // CHECK: model
 // CHECK: param_1
-// CHECK: 09
+// CHECK: 02
 // CHECK: param_0
-// CHECK: 01
+// CHECK: 08
 
 #include <stdio.h>
 

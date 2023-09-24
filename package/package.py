@@ -22,7 +22,7 @@ with tarfile.open(output, "w:gz") as package:
     package.add(temp, os.path.join(prefix, subdir, "CMakeLists.txt"))
     package.add(os.path.join(src_dir, "README.md"), os.path.join(prefix, "README.md"))
     package.add(os.path.join(src_dir, "Vagrantfile"), os.path.join(prefix, "Vagrantfile"))
-    package.add(os.path.join(src_dir, "activate_llvm.sh"), os.path.join(prefix, "activate_llvm.sh"))
+    package.add(os.path.join(src_dir, "requirements.txt"), os.path.join(prefix, "requirements.txt"))
 
     # Add the package target
     package.add(os.path.join(src_dir, "package", "CMakeLists.txt"), os.path.join(prefix, subdir, "package", "CMakeLists.txt"))

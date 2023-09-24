@@ -1,40 +1,52 @@
 ## Prerequisite
 
 These exercises have a couple of dependencies, mainly LLVM and Z3.
-They should be installed in `/net/ens/csi/llvm`.
+They should already be installed on the system, so you shouldn't have anything to do for this.
 
-There is a very simple way to setup your environment for these exercise, run
-the following command at the root of the exercises (ie: the folder containing
-this readme):
+## Get the exercises
 
 ```bash
-source activate_llvm.sh
+# Do this just once ;)
+cp /net/ens/csi/package.tar.gz .
+tar -xf package.tar.gz
+cd tp-obfu
 ```
 
+We need to install a python dependency for the tests to work, and we will do that
+through a virtual environment.
+Start by creating your virtual environment in the `venv` folder:
+```bash
+python -m venv venv
+```
+(You need to do this only once)
 
-Alternatively, if you're on your own computer, you may also use the provided
-docker image (see the "Using Docker" section below).
+Then activate it:
+```bash
+source ./venv/bin/activate
+```
+
+Then install the requirements:
+```bash
+pip install -r requirements.txt
+```
+
+**If you ever close your shell you will have to activate the virtual environment
+again, but you don't need to create/install anything again**
 
 ## Compiling the exercises
 
 Once you have extracted the exercises, you will need to create a build directory
 and configure the project using CMake.
 
-If you've followed the prerequisite section, the commands to get and build the
-exercises should look like this:
+It should look like this:
 
 ```bash
-# Don't do these 3 commands if you already cp-ed the package ;)
-cp /net/ens/csi/package.tar.gz .
-tar -xf package.tar.gz
-cd tp-obfu
-
 mkdir build && cd build
 cmake ..
 make -j
 ```
 
-### Compiling and running the tests
+### Compiling and running the tests
 
 Running `make` in the build directory should succeeds, but running the tests with `lit` should fails (because the code isn't actually implemented :)).
 The `lit` tool can be used by providing the path to the test directory in the build directory (for instance by running `lit tp1/ex/test` from within the build directory). Using `--filter` can filter tests based on a regexp, using `-v` will show the output for failing tests.

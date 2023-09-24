@@ -9,13 +9,7 @@ endif()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
 
-# NOTE: it's actually a very bad practice to hardcode a path in there,
-# I'm just doing this so that it's as easy as "cmake .." to configure this
-# project at CREMI.
-set(DEPENDENCIES_ROOT "/net/ens/csi/llvm" CACHE STRING
-  "Additional path to the installation of dependencies.")
-
-find_package(LLVM 15 REQUIRED CONFIG HINTS ${DEPENDENCIES_ROOT})
+find_package(LLVM 15 REQUIRED)
 message(STATUS "Found LLVM in ${LLVM_CMAKE_DIR}")
 
 # LLVM-specific options, that will be used in all courses
